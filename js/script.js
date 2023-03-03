@@ -1,21 +1,29 @@
 'use strict';
 
-let numberOfFilms=+prompt('How many films did you watch?', '');
+const num = '50';
+// if( num<49 ){
+// 	console.log('error');
+// }else if (num>100){
+// 	console.log('Too much');
+// }else{
+// 	console.log('ok');
+// }
 
-let personalMovieDB={
-	count: numberOfFilms,
-	movies: {},
-	actors: {},
-	genres: [],
-	privat: false
-};
+// ( num === 50 ) ? console.log('ok') : console.log('error');
 
+//switch is a ===
+switch(num){
+case '49':
+	console.log('no');
+	break;
+case '100':
+	console.log('too much');
+	break;
+case '50':
+	console.log('close');
+	break;
+default:
+	console.log('maybe');
+	break;
 
-let watchedFilm=prompt('Name of the random film watched?');
-let rate=prompt('Your rate for this film?');
-
-let watchedFilm1=prompt('Name of the random film watched?');
-let rate1=prompt('Your rate for this film?');
-personalMovieDB.movies[watchedFilm]=rate;
-personalMovieDB.movies[watchedFilm1]=rate1;
-console.log(personalMovieDB);
+}
