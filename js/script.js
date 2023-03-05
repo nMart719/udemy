@@ -1,45 +1,55 @@
 'use strict';
-// let str='';
-// for (let i = 0; i < 7; i++) {	
-// 	for (let j = 0; j < i; j++) {
-// 		str=str+'*';		
-// 	}
-// 	str=str +'\n';
-// }
-// console.log(str);
-// let str='';
-// for (let i = 0; i < 7; i++) {	
-// 	for (let j = 0; ; j++) {
-// 		if (j>=i) break;
-// 		str=str+'*';		
-// 	}
-// 	str=str +'\n';
-// }
-// console.log(str);
 
 
-// f:for (let i = 0; i < 3; i++) {	
-// 	console.log('First: '+ i);
-// 	for (let j = 0; j < 3; j++) {
-// 		console.log('\tSecond: '+ j);
-// 		for (let k = 0; k < 3; k++) {
-// 			if (k === 2) continue f;
-// 			console.log('\t\tThird: '+ k);
-// 		}
-// 	}
-// }
+let numberOfFilms=+prompt('How many films did you watch?', '');
+
+let personalMovieDB={
+	count: numberOfFilms,
+	movies: {},
+	actors: {},
+	genres: [],
+	privat: false
+};
 
 
 
-const lines = 5;
-let result = '';
-let stars=-1;
-for (let i = 0; i <= lines; i++) {
-	stars+=2;	
-	for (let j = 6+i; j > 0; j--) {
-		if(j>stars) result+='-';
-		else result+='*';
+for (let i = 0; i < 2; i++) {
+	let watchedFilm=prompt('Name of the random film watched?');
+	while(watchedFilm === '' || watchedFilm === null || watchedFilm.length>=50){	
+		watchedFilm=prompt('Name of the random film watched?');
 	}
-	result+='\n';
+	let rate=prompt('Your rate for this film?');
+
+	personalMovieDB.movies[watchedFilm]=rate;
+	
 }
-console.log(result);
+
+// let i=0;
+// do {
+// 	let watchedFilm=prompt('Name of the random film watched?');
+// 	while(watchedFilm === '' || watchedFilm === null || watchedFilm.length>=50){	
+// 		watchedFilm=prompt('Name of the random film watched?');
+// 	}
+// 	let rate=prompt('Your rate for this film?');
+// 	personalMovieDB.movies[watchedFilm]=rate;
+// 	i++;
+// }while(i<1);
+
+// let i=0;
+// while (i < 2 ) {
+// 	let watchedFilm=prompt('Name of the random film watched?');
+// 	while(watchedFilm === '' || watchedFilm === null || watchedFilm.length>=50){	
+// 		watchedFilm=prompt('Name of the random film watched?');
+// 	}
+// 	let rate=prompt('Your rate for this film?');
+// 	personalMovieDB.movies[watchedFilm]=rate;
+// 	i++;
+// }
+
+
+if(personalMovieDB['count']<10) console.log('You\'ve watched pretty poor number of films');
+else if(10<=personalMovieDB['count'] && personalMovieDB['count']<=30) console.log('You are classic viewer');
+else if(personalMovieDB['count']>30) console.log('You are a cinephile');
+else console.log('Error');
+
+console.log(personalMovieDB);
