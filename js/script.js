@@ -1,87 +1,46 @@
 'use strict';
-let a=5, b=a;
-b=b+5;
+const someString = 'This is some strange string';
 
-const obj={
-	a: 5,
-	b: 1
-};
-
-
-
-function copy(mainObj){
-	let objCopy={};
-	let key;
-	for (key in mainObj) {
-		objCopy[key]=mainObj[key];
-	}
-	return objCopy;
+function reverse(str) {
+	if(typeof(str)!=='string') return 'Ошибка!';
+	return str.split(' ').reverse().join(' ');
+	
 }
 
 
-const numbers = {
-	a:2,
-	b:5,
-	c: {
-		x: 7,
-		y: 4
+reverse(someString);
+reverse('');
+reverse();
+reverse(3);
+
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+
+function availableCurr(arr, missingCurr) {
+	
+	if(arr.length<=0) return 'Нет доступных валют';
+	
+	for (let j=0 ; j<missingCurr.length; j++) {	
+		for (let i=0; i< arr.length; i++) {
+			if(arr[i]===missingCurr[j]) delete arr[i];
+			
+		}
+		
 	}
-};
-
-const newNumbers = copy(numbers);
-
-
-
-const add = {
-	d:17,
-	e:20
-};
-const clone = Object.assign({},add);
-clone.d = 20;
-// console.log(add);
-// console.log(clone);
-
-const oldArray = ['a', 'b', 'c'];
-const newArray = oldArray.slice();
-
-newArray[1]='bla';
-// console.log(oldArray);
-// console.log(newArray);
-
-
-const video = ['youtube', 'vimeo', 'uatube'],
-	blogs = ['wordpress', 'livejournal', 'blogger'],
-	internet = [...video, ...blogs, 'vk', 'facebook'];
-
-// blogs[0]='a';
-internet[0]='b';
-console.log(video);
-console.log(blogs);
-console.log(internet);
-
-
-function log(a,b,c){
-	console.log(a);
-	console.log(b);
-	console.log(c);
+	let str='Доступные валюты:';
+	for (let i=0; i< arr.length; i++) { 
+		if(arr[i]!== undefined){
+			str+=`\n${arr[i]}`;
+		}
+	}
+	return str;
 }
 
-const num = [2,5,7];
-log(...num);
 
-
-const array = ['a', 'b'];
-const newAarray = [...array];
-
-const q= {
-	one: 1,
-	two: 2
-};
-
-const newObject = {
-	...q
-};
-
-newObject['one'] = 'one';
-console.log(q);
-console.log(newObject);
+console.log(availableCurr('',additionalCurrencies));
+console.log('!!!!!!!!!!!!');
+console.log(availableCurr(baseCurrencies,additionalCurrencies));
+console.log('!!!!!!!!!!!!');
+console.log(availableCurr(['UAH', 'RUB', 'CNY'],['CNY']));
+console.log('!!!!!!!!!!!!');
+console.log(availableCurr(['UAH', 'RUB', 'CNY','USD', 'EUR'],['USD', 'EUR','CNY']));
