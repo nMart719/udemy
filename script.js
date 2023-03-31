@@ -1,33 +1,39 @@
+// function func(){
+// 	window.smth='string';
+// }
 
 
-'use strict';
-const p = document.querySelectorAll('p');
-console.log(p); 
+// const someRes=getData();
+// const node=document.querySelector('.class');
+
+// setInterval(function(){
+// 	if(node){
+// 		node.innerHTML=someRes;
+// 	}
+// },1000);
+
+// function outer(){
+// 	const potentiallyHugArray=[];
+// 	return function inner(){
+// 		potentiallyHugArray.push('Hello');
+// 		console.log('Hello');
+// 	} ;
+// }
+
+// const sayHello=outer();
 
 
-function loadScript(src){
-	const script = document.createElement('script');
-	script.src =src;
-	script.async=false;
-	document.body.append(script);
+function createElement(){
+	const div =document.createElement('div');
+	div.id='test';
+	return div;
 }
-loadScript('test.js');
-loadScript('some.js');
-// const box=document.querySelector('.box');
-// box.addEventListener('touchstart', (e) =>{
-// 	e.preventDefault();
-// 	console.log('Start');
-// 	console.log(e.changedTouches);
-// });
-// box.addEventListener('touchmove', (e) =>{
-// 	e.preventDefault();
-// 	console.log(e.targetTouches[0].pageX);
-// });
-// box.addEventListener('touchend', (e) =>{
-// 	e.preventDefault();
-// 	console.log('End');
-// });
 
+const testDiv=createElement();
 
+document.body.append(testDiv);
+function deleteElement(){
+	document.body.removeChild(document.getElementsById('tets'));
+}
 
-// Возьмите свой код из предыдущей практики
+deleteElement();
