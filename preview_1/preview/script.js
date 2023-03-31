@@ -1,23 +1,27 @@
 'use strict';
-const boxesQuery=document.querySelectorAll('.box');
-const boxesGet=document.getElementsByClassName('box'); 
+
+// const obj ={
+// 	name: 'Test',
+// 	[Symbol('id')]: 1,
+// 	getId: function(){
+// 		return this[id];
+// 	}
+
+// };
 
 
-boxesQuery.forEach(box =>{
-	if(box.matches('.this')) console.log('This one');
-}
-);
+// // console.log(obj.getId());
+// console.log(obj[Object.getOwnPropertySymbols(obj)[0]]);
+// obj[id]=1;
 
-console.log(boxesQuery[0].closest('.wrapper'));
-// boxesQuery[0].remove();
-// boxesGet[0].remove();
+const myAwesomeDB={
+	movies: [],
+	actors: [],
+	[Symbol.for('id')]: 123
+};
 
-// for(let i=0; i<5;i++){
-// 	const div=document.createElement('div');
-// 	div.classList.add('box');
-// 	document.body.append(div);
-// }
-// console.log(boxesQuery);
-// console.log(boxesGet);
-// console.log(Array.from(boxesGet));
-// console.log(document.body.children);
+myAwesomeDB.id='1233333333';
+
+
+console.log(myAwesomeDB[Symbol.for('id')]);
+console.log(myAwesomeDB);
