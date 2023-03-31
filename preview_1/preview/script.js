@@ -1,22 +1,23 @@
 'use strict';
+const boxesQuery=document.querySelectorAll('.box');
+const boxesGet=document.getElementsByClassName('box'); 
 
-const box = document.querySelector('.box');
 
-const block = document.querySelector('.block');
+boxesQuery.forEach(box =>{
+	if(box.matches('.this')) console.log('This one');
+}
+);
 
-console.log(block);
-// if(block)console.log(block.textContent);
-// console.log(block?.textContent);// operator ? checks left side first and returns undefined if it's false
-//block?.textContent='123';// here we trying to initiate undefined as 123, but that's impossible
-console.log(1+2);
+console.log(boxesQuery[0].closest('.wrapper'));
+// boxesQuery[0].remove();
+// boxesGet[0].remove();
 
-const userData = {
-	name: 'Ivan',
-	age: null,
-	say: function(){
-		console.log('Hello');
-	}
-};
-userData.say();
-userData.hey?.();
-console.log(userData?.skills?.js);// = if(userData && userData.skills && userData.skills.js)
+// for(let i=0; i<5;i++){
+// 	const div=document.createElement('div');
+// 	div.classList.add('box');
+// 	document.body.append(div);
+// }
+// console.log(boxesQuery);
+// console.log(boxesGet);
+// console.log(Array.from(boxesGet));
+// console.log(document.body.children);
