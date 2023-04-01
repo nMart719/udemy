@@ -8,53 +8,40 @@ const user ={
 	}
 };
 
-// for (const key in user) {
-// 	console.log(user[key]);
+
+
+const userMap = new Map(Object.entries(user));
+console.log(userMap);
+
+
+const newUserObj = Object.fromEntries(userMap);
+
+console.log(newUserObj);
+const shops = [
+	{rice: 500},
+	{oil: 200},
+	{bread: 50}
+];
+const budget=[5000,3000,2000];
+const map = new Map([
+	[{paper : 400},8000]
+]);
+shops.forEach((shop,i)=>{
+	map.set(shop, budget[i]);
+});
+// console.log(map.get(shops[0]));
+// console.log(map);
+// for (const [shop, price] of map.entries()) {
+// 	console.log(price, shop);
 // }
-// const arr =['b','a','c'];
-// Array.prototype.someMethod = function(){};
-// console.dir(arr);
-// for (const key of arr) {
-// 	console.log(key);
+
+
+// map.forEach( (value, key, map) => {
+// 	console.log(key, value);
+// });
+
+// const goods = [];
+// for(let shop of map.keys()){
+// 	goods.push(Object.keys(shop)[0]);
 // }
-// const str ='string';
-
-// for (const key of str) {
-// 	console.log(key);
-// }
-//writable
-//enumerable
-//configurable
-
-
-
-const salaries = {
-	john: 500,
-	ivan: 1000,
-	anna: 5000,
-	sayHello: function(){
-		console.log('Hello');
-	}
-
-
-};
-
-salaries[Symbol.iterator]=function(){
-	return {
-		current: this.john,
-		last: this.anna,
-		next(){
-			if(this.current<this.last) {
-				this.current+=500;
-				return {done: false, value: this.current};
-			}else{
-				return{done: true};
-			}
-		}
-	};
-};
-const iterator = salaries[Symbol.iterator]();
-console.log(iterator.next());
-for(let res of salaries){
-	console.log(res);
-}
+// console.log(goods);
