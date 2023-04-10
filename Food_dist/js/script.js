@@ -42,14 +42,17 @@ window.addEventListener('DOMContentLoaded', () =>{
 	//timer
 
 
-	const deadLine = '2023-05-11';
+	const deadLine = '2022-05-11';
 	function getTimeRemaining(endtime){
+		let days=0,hours=0,minutes=0,seconds=0;
 		const t = Date.parse(endtime)-Date.now();
-		const days= Math.floor(t/(1000*60*60*24));
-		const hours= Math.floor((t/(1000*60*60)%24));
-		const minutes= Math.floor((t/(1000*60)%60));
-		const seconds= Math.floor((t/(1000)%60));
-		console.log(t);
+		if(t>0){
+			days= Math.floor(t/(1000*60*60*24));
+			hours= Math.floor((t/(1000*60*60)%24));
+			minutes= Math.floor((t/(1000*60)%60));
+			seconds= Math.floor((t/(1000)%60));
+		}
+		console.log(Date(t));
 		return {
 			'total': t,
 			'days': days,
