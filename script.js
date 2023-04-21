@@ -1,39 +1,18 @@
-// function func(){
-// 	window.smth='string';
-// }
-
-
-// const someRes=getData();
-// const node=document.querySelector('.class');
-
-// setInterval(function(){
-// 	if(node){
-// 		node.innerHTML=someRes;
-// 	}
-// },1000);
-
-// function outer(){
-// 	const potentiallyHugArray=[];
-// 	return function inner(){
-// 		potentiallyHugArray.push('Hello');
-// 		console.log('Hello');
-// 	} ;
-// }
-
-// const sayHello=outer();
-
-
-function createElement(){
-	const div =document.createElement('div');
-	div.id='test';
-	return div;
+'use strict';
+function User(name, id){
+	this.name= name;
+	this.id=id;
+	this.human=true;
+	this.hello = function(){
+		console.log('Hello '+this.name);
+	};
 }
-
-const testDiv=createElement();
-
-document.body.append(testDiv);
-function deleteElement(){
-	document.body.removeChild(document.getElementsById('tets'));
-}
-
-deleteElement();
+User.prototype.exit = function(){
+	console.log('User '+ this.name + ' has gone');
+};
+const ivan=new User('Ivan', 28);
+const alex=new User('Alex', 20);
+ivan.exit();
+alex.exit();
+// console.log(ivan);
+// console.log(alex);
