@@ -52,7 +52,6 @@ window.addEventListener('DOMContentLoaded', () =>{
 			minutes= Math.floor((t/(1000*60)%60));
 			seconds= Math.floor((t/(1000)%60));
 		}
-		console.log(Date(t));
 		return {
 			'total': t,
 			'days': days,
@@ -158,10 +157,8 @@ window.addEventListener('DOMContentLoaded', () =>{
 		changeToUAH(){
 			this.price=+this.price*this.transfer;
 		}
-		render(){
-			console.log('render');
+		render(){	
 			const element=document.createElement('div');
-			console.log(this.classes);
 			if(this.classes.length===0){
 				this.classes = 'menu__item';
 				element.classList.add(this.classes);
@@ -218,4 +215,45 @@ window.addEventListener('DOMContentLoaded', () =>{
 		21,
 		'.menu .container',
 	).render();
+//Forms
+const message={
+loading: 'Loading',
+success: 'Thanks, wait for contact',
+fail: 'Something went wrong'
+};
+
+
+const forms=document.querySelectorAll('form');
+forms.forEach(item =>{
+	postData(item);
+	});
+function postData(form){
+	form.addEventListener('submit',(e)=>{
+		e.preventDefault();
+
+		const statusMessage = document.createElement('div');
+		statusMessage.classList.add('status');
+		statusMessage.textContent=message.loading;
+		form.append(statusMessage);
+		const request=new XMLHttpRequest();
+		request.open('POST', 'server.php');
+		// request.setRequestHeader('Content-type','multipart/form-data')
+		const formData = new FormData(form);
+		const object={};
+formData.forEach(function(value, key){
+	object[key]=value;
+})
+
+		request.send(JSON.stringify(object));
+		request.addEventListener('load',()=>{
+			if( request.status===200){
+				console.log(request.response);
+				statusMessage.textContent=message.success;
+				form.reset();
+				setTimeout (()=>{statusMessage.remove()}, 2000);
+			}else statusMessage.textContent=message.fail;
+		})
+	})
+};
+
 });
