@@ -236,25 +236,30 @@ window.addEventListener('DOMContentLoaded', () =>{
 				margin: 0 auto;
 			`;
 			form.insertAdjacentElement('afterend', statusMessage);
-			const request=new XMLHttpRequest();
-			request.open('POST', 'server.php');
-			// request.setRequestHeader('Content-type','multipart/form-data')
-			const formData = new FormData(form);
+			
+			const formData = new FormData(form); 
 			const object={};
 			formData.forEach(function(value, key){
 				object[key]=value;
 			});
 
-			request.send(JSON.stringify(object));
-			request.addEventListener('load',()=>{
-				if( request.status===200){
-					console.log(request.response);
+			fetch('server.php', {
+				method: 'POST',
+				headers:{
+					'Content-type':'application/json'
+				},
+				body: JSON.stringify(object)
+			}).then(data=>data.text())
+				.then(data=>{
+					console.log(data);
 					showThanksModal(message.success);
-					form.reset();
 					statusMessage.remove();
-				}else showThanksModal(message.fail);
-			});
-		});
+				}).catch(()=>{
+					showThanksModal(message.fail);
+				}).finally(()=>{
+					form.reset();
+				});
+		}); 
 	}
 
 	//Pretty message for user
@@ -271,11 +276,19 @@ window.addEventListener('DOMContentLoaded', () =>{
 		</div>
 		`;
 		document.querySelector('.modal').append(thanksModal);
-		console.log(thanksModal);
 		setTimeout( ()=>{
 			thanksModal.remove();
 			prevModalDialog.classList.add('show');
 			prevModalDialog.classList.remove('hide');
 		},4000);	
 	}
+	fetch('https://jsonplaceholder.typicode.com/posts',{
+		method:'POST',
+		body:JSON.stringify({name:'Alex'}),
+		headers:{
+			'Content-Type': 'application/json'
+		}
+	})
+		.then(response=>response.json())
+		.then(json=>console.log(json));
 });
